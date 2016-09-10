@@ -16,7 +16,7 @@ public class RobotController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		horizontalInput = Input.GetAxis ("Horizontal");
-		robot.engine.SetFacing (horizontalInput);
+		robot.wheel.SetFacing (horizontalInput);
 
 		acceleratorInput = Input.GetAxis ("Accelerator");
 		robot.engine.AcceleratorInput (acceleratorInput);

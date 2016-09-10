@@ -5,9 +5,11 @@ using System.Collections;
 public class Engine : RobotPart {
 
 	public float maxMotorSpeed;
+	public float minMotorSpeed;
 	public float maxMotorTorque;
+	public AnimationCurve torquePerRPM;
 
-	public int facing = 1;
+//	public int facing = 1;
 
 	public void AcceleratorInput (float value) {
 		value = Mathf.Abs (value);
@@ -17,19 +19,20 @@ public class Engine : RobotPart {
 
 	private void GeneratePower (float input) {
 
-		speed = maxMotorSpeed * -facing;
-		torque = input * maxMotorTorque;;
+		speed = maxMotorSpeed * input;
+		speed = Mathf.Clamp (speed, minMotorSpeed, maxMotorSpeed);
+		torque = torquePerRPM.Evaluate (speed / maxMotorSpeed) * maxMotorTorque;
 
 		OutputPower ();
 	}
 
-	public void SetFacing (float direction) {
-		if (direction > 0) {
-			facing = 1;
-		} else if (direction < 0) {
-			facing = -1;
-		}
-	}
+//	public void SetFacing (float direction) {
+//		if (direction > 0) {
+//			facing = 1;
+//		} else if (direction < 0) {
+//			facing = -1;
+//		}
+//	}
 
 	float ConvertDegSecToRPM (float value) {
 		float RPM = value * 0.16f;
