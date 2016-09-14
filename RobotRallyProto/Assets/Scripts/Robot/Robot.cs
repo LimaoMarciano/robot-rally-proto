@@ -31,6 +31,8 @@ public class Robot : MonoBehaviour {
 		engine.connectedPart = transmission;
 		transmission.connectedPart = brake;
 		brake.connectedPart = wheel;
+		engine.transmission = transmission;
+		engine.wheel = wheel;
 
 		tyrePerimeterPerDeg = (0.32f * 2 * Mathf.PI) / 360;
 	}
@@ -40,7 +42,7 @@ public class Robot : MonoBehaviour {
 		gear = transmission.GetCurrentGear() + 1;
 		speed = Mathf.Abs(wheelRigidBody.velocity.magnitude) * 3.6f;
 		tyreSlip = (Mathf.Abs (wheelJoint.jointSpeed) * tyrePerimeterPerDeg) - speed / 3.6f;
-		engineRPM = wheelJoint.jointSpeed * transmission.GetCurrentGearRatio();
+		engineRPM = Mathf.Abs (wheelJoint.jointSpeed) * transmission.GetCurrentGearRatio();
 
 		if (Mathf.Abs (tyreSlip) > 4 && wheelCollisionDetector.isGrounded) {
 			wheelSprite.color = Color.red;

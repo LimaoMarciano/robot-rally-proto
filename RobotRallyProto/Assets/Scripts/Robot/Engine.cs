@@ -8,6 +8,13 @@ public class Engine : RobotPart {
 	public float minMotorSpeed;
 	public float maxMotorTorque;
 	public AnimationCurve torquePerRPM;
+	public Transmission transmission;
+	public Wheel wheel;
+
+	private float smoothTime = 0.01f;
+
+	private float lastSpeed = 0;
+	private float velocity = 0;
 
 //	public int facing = 1;
 
@@ -19,11 +26,19 @@ public class Engine : RobotPart {
 
 	private void GeneratePower (float input) {
 
-		speed = maxMotorSpeed * input;
-		speed = Mathf.Clamp (speed, minMotorSpeed, maxMotorSpeed);
-		torque = torquePerRPM.Evaluate (speed / maxMotorSpeed) * maxMotorTorque;
+		float gearRatio = transmission.GetCurrentGearRatio ();
+		float wheelSpeed = wheel.GetCurrentMotorSpeed ();
 
+		float currentSpeed = Mathf.Abs(wheelSpeed) * gearRatio;
+
+		float newSpeed = Mathf.MoveTowards (lastSpeed, currentSpeed, smoothTime * Time.deltaTime);
+
+		speed = maxMotorSpeed;
+		speed = Mathf.Clamp (speed, minMotorSpeed, maxMotorSpeed);
+		torque = torquePerRPM.Evaluate (newSpeed / maxMotorSpeed) * maxMotorTorque;
+		torque = torque * input;
 		OutputPower ();
+		lastSpeed = currentSpeed;
 	}
 
 //	public void SetFacing (float direction) {
