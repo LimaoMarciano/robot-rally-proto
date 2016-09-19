@@ -916,6 +916,26 @@ Prefab:
       propertyPath: scenario.m_Bits
       value: 512
       objectReference: {fileID: 0}
+    - target: {fileID: 82000012091310568, guid: ab5d495c02e68c644ac513cda7c6a845,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: d2ef61d8a1f082d4e83435c40f422dcc, type: 3}
+    - target: {fileID: 114000010800875840, guid: ab5d495c02e68c644ac513cda7c6a845,
+        type: 2}
+      propertyPath: minPitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010800875840, guid: ab5d495c02e68c644ac513cda7c6a845,
+        type: 2}
+      propertyPath: maxPitch
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000012091310568, guid: ab5d495c02e68c644ac513cda7c6a845,
+        type: 2}
+      propertyPath: m_Pitch
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114000011351970772, guid: ab5d495c02e68c644ac513cda7c6a845, type: 2}
     - {fileID: 114000013887111234, guid: ab5d495c02e68c644ac513cda7c6a845, type: 2}

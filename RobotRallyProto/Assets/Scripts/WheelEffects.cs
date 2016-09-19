@@ -25,6 +25,7 @@ public class WheelEffects : MonoBehaviour {
 		if (rb.velocity.x < 0) {
 			speed *= -1;
 		}
+
 		tyreSlip = (-wheel.jointSpeed * tyrePerimeterPerDeg) - speed;
 		Debug.Log ("wheel speed: " + wheel.jointSpeed * tyrePerimeterPerDeg + ", speed: " + rb.velocity.magnitude + ", dif: " + tyreSlip);
 

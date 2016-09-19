@@ -32,7 +32,6 @@ public class TestEngine02 : MonoBehaviour {
 
 		wheelJoint.motor = SetJointMotor2D (wheelJoint.motor, torque, speed);
 
-
 		engineSpeed = Mathf.SmoothDamp (engineSpeed, wheelJoint.jointSpeed, ref engineSpeedDelta, engineSpeedSmoothTime);
 	}
 
