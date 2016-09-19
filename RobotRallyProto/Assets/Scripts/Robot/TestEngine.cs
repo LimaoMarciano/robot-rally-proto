@@ -23,7 +23,9 @@ public class TestEngine : MonoBehaviour {
 
 	void EngineUpdate (float inp) {
 
-		speed = Mathf.MoveTowards (speed, -wheel.jointSpeed * 3, 500000 * Time.deltaTime);
+//		speed = Mathf.MoveTowards (speed, -wheel.jointSpeed * 3, 500000 * Time.deltaTime);
+		speed = Mathf.Lerp (speed, -wheel.jointSpeed * 1, Time.deltaTime * 1000);
+
 
 		float torque = (maxTorque * inp);
 		float engineAcc = (torque / engineInertia) * Time.deltaTime;
@@ -32,8 +34,8 @@ public class TestEngine : MonoBehaviour {
 		speed = Mathf.Clamp (speed, 0, 5000);
 
 		JointMotor2D engineMotor = wheel.motor;
-		engineMotor.motorSpeed = -speed / 3f;
-		engineMotor.maxMotorTorque = torque * 3f;
+		engineMotor.motorSpeed = -speed / 1f;
+		engineMotor.maxMotorTorque = torque * 1f;
 		wheel.motor = engineMotor;
 
 

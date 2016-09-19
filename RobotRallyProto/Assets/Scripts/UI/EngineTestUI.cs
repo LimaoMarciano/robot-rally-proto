@@ -6,7 +6,7 @@ public class EngineTestUI : MonoBehaviour {
 
 	public FillBar speedGauge;
 	public Text speedmeter;
-	public TestEngine engine;
+	public TestEngine02 engine;
 
 	public FillBar motorSpeed;
 	public Text motormeter;
@@ -18,10 +18,10 @@ public class EngineTestUI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		speedGauge.fillValue = engine.GetEngineSpeed () / 5000;
+		speedGauge.fillValue = engine.GetEngineSpeed () / engine.maxEngineSpeed;
 		speedmeter.text = engine.GetEngineSpeed ().ToString ();
 
-		motorSpeed.fillValue = -engine.GetWheelSpeed () / (5000 / 3f);
+		motorSpeed.fillValue = engine.GetWheelSpeed () / (engine.maxEngineSpeed / engine.GetCurrentGearRatio());
 		motormeter.text = engine.GetWheelSpeed ().ToString ();
 	}
 }

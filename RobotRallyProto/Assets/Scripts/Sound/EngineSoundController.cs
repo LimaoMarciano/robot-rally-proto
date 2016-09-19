@@ -3,7 +3,7 @@ using System.Collections;
 
 public class EngineSoundController : MonoBehaviour {
 
-	public TestEngine robot;
+	public TestEngine02 robot;
 	public AudioSource engine;
 	public float minPitch = 0.6f;
 	public float maxPitch = 2.0f;
@@ -17,7 +17,7 @@ public class EngineSoundController : MonoBehaviour {
 	}
 
 	void Update () {
-		float rpmRange = Mathf.Abs(robot.GetEngineSpeed()) / 5000;
+		float rpmRange = Mathf.Abs(robot.GetEngineSpeed()) / robot.maxEngineSpeed;
 		UpdateEnginePitch (rpmRange);
 	}
 	
