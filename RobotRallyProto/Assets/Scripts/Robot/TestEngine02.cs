@@ -3,6 +3,7 @@ using System.Collections;
 
 public class TestEngine02 : MonoBehaviour {
 
+	//Public variables
 	[Header("Engine")]
 	public float maxTorque = 200;
 	public float maxEngineSpeed = 5000;
@@ -14,14 +15,16 @@ public class TestEngine02 : MonoBehaviour {
 	[Header("Brakes")]
 	public float brakeForce = 400;
 
+	//Private variables
 	private float acceleratorInput = 0;
 	private float brakeInput = 0;
+
 	private int currentGear = 0;
 	private float torque;
 	private float speed;
 	private int facing = 1;
-	private float engineSpeed = 0;
 
+	private float engineSpeed = 0;
 	private float engineSpeedDelta = 0;
 
 	// Use this for initialization
@@ -50,14 +53,7 @@ public class TestEngine02 : MonoBehaviour {
 		//Smooth RPM reading
 		engineSpeed = Mathf.SmoothDamp (engineSpeed, wheelJoint.jointSpeed, ref engineSpeedDelta, engineSpeedSmoothTime);
 	}
-
-	JointMotor2D SetJointMotor2D (JointMotor2D motor, float motorTorque, float motorSpeed) {
-		JointMotor2D mt = motor;
-		mt.maxMotorTorque = motorTorque;
-		mt.motorSpeed = motorSpeed;
-		return mt;
-	}
-
+		
 	public void SetAcceleratorInput (float input) {
 		acceleratorInput = input;
 	}
@@ -101,5 +97,15 @@ public class TestEngine02 : MonoBehaviour {
 	public float GetCurrentGearRatio () {
 		return gearRatios [currentGear];
 	}
+
+	public float GetCurrentVelocity () {
+		return wheelJoint.gameObject.GetComponent<Rigidbody2D> ().velocity.magnitude;
+	}
 		
+	private JointMotor2D SetJointMotor2D (JointMotor2D motor, float motorTorque, float motorSpeed) {
+		JointMotor2D mt = motor;
+		mt.maxMotorTorque = motorTorque;
+		mt.motorSpeed = motorSpeed;
+		return mt;
+	}
 }

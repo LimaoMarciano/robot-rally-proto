@@ -5,12 +5,13 @@ using UnityEngine.UI;
 public class EngineTestUI : MonoBehaviour {
 
 	public Text gear;
-	public FillBar speedGauge;
-	public Text speedmeter;
+	public Text speedometer;
+	public FillBar wheelSpeed;
+	public Text wheelSpeedValue;
 	public TestEngine02 engine;
 
 	public FillBar motorSpeed;
-	public Text motormeter;
+	public Text motorSpeedValue;
 
 	// Use this for initialization
 	void Start () {
@@ -21,10 +22,13 @@ public class EngineTestUI : MonoBehaviour {
 	void Update () {
 		gear.text = engine.GetCurrentGear ().ToString();
 
-		speedGauge.fillValue = engine.GetEngineSpeed () / engine.maxEngineSpeed;
-		speedmeter.text = engine.GetEngineSpeed ().ToString ();
+		wheelSpeed.fillValue = engine.GetEngineSpeed () / engine.maxEngineSpeed;
+		wheelSpeedValue.text = engine.GetEngineSpeed ().ToString ("###");
 
 		motorSpeed.fillValue = engine.GetWheelSpeed () / (engine.maxEngineSpeed / engine.GetCurrentGearRatio());
-		motormeter.text = engine.GetWheelSpeed ().ToString ();
+		motorSpeedValue.text = engine.GetWheelSpeed ().ToString ("###");
+
+		float speed = engine.GetCurrentVelocity () * 3.6f;
+		speedometer.text = speed.ToString ("###") + "km/h";
 	}
 }
