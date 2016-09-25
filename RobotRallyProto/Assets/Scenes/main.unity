@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   engine: {fileID: 136121058}
+  jumpMechanism: {fileID: 136121061}
 --- !u!114 &136121058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,6 +175,7 @@ MonoBehaviour:
   - 0.9
   wheelJoint: {fileID: 900389891}
   engineSpeedSmoothTime: 0.1
+  brakeForce: 400
 --- !u!114 &136121060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,6 +192,22 @@ MonoBehaviour:
   wheelCollisionDetector: {fileID: 573897269}
   tyreSlipParticle: {fileID: 837536174}
   rb: {fileID: 573897268}
+--- !u!114 &136121061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 136121056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56b6d28c4be103145baa2b412b4a0fc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionDetector: {fileID: 573897269}
+  rb: {fileID: 728614216}
+  jumpForce: 500
+  jumpBoostForce: 4000
+  jumpBoostTimeLimit: 0.2
 --- !u!1 &215988101
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,6 +540,11 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1330948668}
   m_Script: {fileID: 11500000, guid: dc5afc8b85af60943b55a50f012c1527, type: 3}
+--- !u!50 &728614216 stripped
+Rigidbody2D:
+  m_PrefabParentObject: {fileID: 50000010775737528, guid: ab5d495c02e68c644ac513cda7c6a845,
+    type: 2}
+  m_PrefabInternal: {fileID: 1330948668}
 --- !u!198 &837536174 stripped
 ParticleSystem:
   m_PrefabParentObject: {fileID: 198000010665407058, guid: ab5d495c02e68c644ac513cda7c6a845,
@@ -772,6 +795,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77255bd20b4016342bb608868830c1cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gear: {fileID: 1735322556}
   speedGauge: {fileID: 526358908}
   speedmeter: {fileID: 1128782379}
   engine: {fileID: 136121058}
@@ -1431,6 +1455,12 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!114 &1735322556 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000013756449786, guid: f5e8843171114ea43aa9b1576d3018bd,
+    type: 2}
+  m_PrefabInternal: {fileID: 1784534391}
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &1766046675
 GameObject:
   m_ObjectHideFlags: 0

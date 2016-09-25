@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class EngineTestUI : MonoBehaviour {
 
+	public Text gear;
 	public FillBar speedGauge;
 	public Text speedmeter;
 	public TestEngine02 engine;
@@ -18,6 +19,8 @@ public class EngineTestUI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		gear.text = engine.GetCurrentGear ().ToString();
+
 		speedGauge.fillValue = engine.GetEngineSpeed () / engine.maxEngineSpeed;
 		speedmeter.text = engine.GetEngineSpeed ().ToString ();
 

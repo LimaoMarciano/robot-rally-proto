@@ -4,8 +4,10 @@ using System.Collections;
 public class TestEngine02Controller : MonoBehaviour {
 
 	public TestEngine02 engine;
+	public JumpMechanism jumpMechanism;
 
 	private float acceleratorInput;
+	private float brakeInput;
 	private float horizontalInput;
 
 	// Use this for initialization
@@ -21,8 +23,10 @@ public class TestEngine02Controller : MonoBehaviour {
 		horizontalInput = Input.GetAxis ("Horizontal");
 		engine.SetFacing (horizontalInput);
 
-//		brakeInput = Input.GetAxis ("Brake");
-//		robot.brake.BrakeInput (brakeInput);
+		brakeInput = Input.GetAxis ("Brake");
+		engine.SetBrakeInput (brakeInput);
+
+		jumpMechanism.JumpInput (Input.GetButton ("Jump"));
 
 		if (Input.GetButtonDown ("GearShiftUp")) {
 			engine.ShiftGearUp ();

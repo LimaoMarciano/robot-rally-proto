@@ -3,6 +3,7 @@ using System.Collections;
 
 public class TestEngine02 : MonoBehaviour {
 
+	[Header("Engine")]
 	public float maxTorque = 200;
 	public float maxEngineSpeed = 5000;
 	public float[] gearRatios;
@@ -10,7 +11,11 @@ public class TestEngine02 : MonoBehaviour {
 	[Range(0, 1)]
 	public float engineSpeedSmoothTime = 0.5f;
 
+	[Header("Brakes")]
+	public float brakeForce = 400;
+
 	private float acceleratorInput = 0;
+	private float brakeInput = 0;
 	private int currentGear = 0;
 	private float torque;
 	private float speed;
@@ -30,8 +35,19 @@ public class TestEngine02 : MonoBehaviour {
 		torque = maxTorque * acceleratorInput * gearRatios[currentGear];
 		speed = maxEngineSpeed / gearRatios [currentGear] * facing;
 
+		//Apply brakes
+		torque = (brakeForce * brakeInput) - torque;
+		speed = speed * (1 - brakeInput);
+		if (torque > 0)
+			speed = 0;
+		else {
+			torque *= -1;
+		}
+
+		//Apply engine torque and speed to wheels
 		wheelJoint.motor = SetJointMotor2D (wheelJoint.motor, torque, speed);
 
+		//Smooth RPM reading
 		engineSpeed = Mathf.SmoothDamp (engineSpeed, wheelJoint.jointSpeed, ref engineSpeedDelta, engineSpeedSmoothTime);
 	}
 
@@ -44,6 +60,11 @@ public class TestEngine02 : MonoBehaviour {
 
 	public void SetAcceleratorInput (float input) {
 		acceleratorInput = input;
+	}
+
+	public void SetBrakeInput (float value) {
+		brakeInput = Mathf.Abs (value);
+		brakeInput = Mathf.Clamp01 (brakeInput);
 	}
 
 	public void ShiftGearUp () {

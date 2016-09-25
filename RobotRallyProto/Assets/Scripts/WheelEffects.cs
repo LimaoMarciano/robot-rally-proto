@@ -27,7 +27,7 @@ public class WheelEffects : MonoBehaviour {
 		}
 
 		tyreSlip = (-wheel.jointSpeed * tyrePerimeterPerDeg) - speed;
-		Debug.Log ("wheel speed: " + wheel.jointSpeed * tyrePerimeterPerDeg + ", speed: " + rb.velocity.magnitude + ", dif: " + tyreSlip);
+//		Debug.Log ("wheel speed: " + wheel.jointSpeed * tyrePerimeterPerDeg + ", speed: " + rb.velocity.magnitude + ", dif: " + tyreSlip);
 
 		if (Mathf.Abs (tyreSlip) > 4 && wheelCollisionDetector.isGrounded) {
 			tyreSlipParticle.EnableEmission (true);
