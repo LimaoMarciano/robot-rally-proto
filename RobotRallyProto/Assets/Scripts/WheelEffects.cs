@@ -36,7 +36,7 @@ public class WheelEffects : MonoBehaviour {
 			tyreSlipParticle.EnableEmission (false);
 		}
 
-		if (wheelCollisionDetector.isGrounded && speed > 1) {
+		if (wheelCollisionDetector.isGrounded && rb.velocity.magnitude > 1) {
 			smokeTrail.EnableEmission (true);
 		} else {
 			smokeTrail.EnableEmission (false);

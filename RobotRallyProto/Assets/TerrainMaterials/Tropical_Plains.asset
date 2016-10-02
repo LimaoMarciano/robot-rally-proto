@@ -16,7 +16,7 @@ MonoBehaviour:
   _descriptors:
   - applyTo: 0
     zOffset: -0.2
-    yOffset: 0
+    yOffset: -0.58
     leftCap:
       serializedVersion: 2
       x: 0.12597656
@@ -55,7 +55,7 @@ MonoBehaviour:
     capOffset: -0.46
   - applyTo: 1
     zOffset: -0.1
-    yOffset: 0.3
+    yOffset: 0.36
     leftCap:
       serializedVersion: 2
       x: 0.20117188
@@ -91,7 +91,7 @@ MonoBehaviour:
       y: 0.7519531
       width: 0.24902344
       height: 0.1484375
-    capOffset: -0.41
+    capOffset: 0
   - applyTo: 2
     zOffset: -0.1
     yOffset: 0.21
