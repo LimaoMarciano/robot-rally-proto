@@ -4,6 +4,7 @@ using System.Collections;
 public class CheckPoint : MonoBehaviour {
 
 	public GameManager gm;
+	private bool isCompleted = false;
 
 	// Use this for initialization
 	void Start () {
@@ -16,6 +17,9 @@ public class CheckPoint : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D (Collider2D col) {
-		gm.StopTimer ();
+		if (!isCompleted) {
+			gm.StopTimer ();
+			isCompleted = true;
+		}
 	}
 }
