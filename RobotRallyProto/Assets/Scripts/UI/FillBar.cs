@@ -19,7 +19,7 @@ public class FillBar : MonoBehaviour {
 	}
 
 	void SetValue (float value) {
-		fill.anchorMax = new Vector2 (value, 0.5f);
+		fill.anchorMax = new Vector2 (Mathf.Clamp01(value), 0.5f);
 //		fill.offsetMax = 0;
 	}
 }

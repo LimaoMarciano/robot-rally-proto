@@ -7,6 +7,7 @@ public class WheelEffects : MonoBehaviour {
 	public float wheelRadius;
 	public WheelCollisionDetector wheelCollisionDetector;
 	public ParticleSystem tyreSlipParticle;
+	public ParticleSystem smokeTrail;
 
 	public Rigidbody2D rb;
 	private float tyreSlip;
@@ -33,6 +34,12 @@ public class WheelEffects : MonoBehaviour {
 			tyreSlipParticle.EnableEmission (true);
 		} else {
 			tyreSlipParticle.EnableEmission (false);
+		}
+
+		if (wheelCollisionDetector.isGrounded && rb.velocity.magnitude > 1) {
+			smokeTrail.EnableEmission (true);
+		} else {
+			smokeTrail.EnableEmission (false);
 		}
 	}
 }
